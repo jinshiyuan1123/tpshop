@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="__STATIC__/new2/css/style.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/new2/css/iconfont.css"/>
+    <script src="__STATIC__/new2/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__STATIC__/new2/js/mobile-util.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body class="f3">
+<div class="classreturn loginsignup">
+    <div class="content">
+        <div class="ds-in-bl return">
+            <a href="{:U('Mobile/user/order_list')}"><img src="__STATIC__/images/return.png" alt="返回"></a>
+        </div>
+        <div class="ds-in-bl search center">
+            <span>确认收货成功</span>
+        </div>
+        <!--<div class="ds-in-bl menu mess">
+            <a href="javascript:void(0);"><img src="images/mess.png" alt=""></a>
+        </div>-->
+    </div>
+</div>
+<div class="euresucess">
+    <img src="__STATIC__/images/sch.png"/>
+    <p>确认收货成功</p>
+</div>
+<div class="sonfbst">
+    <div class="maleri30">
+        <span><i class="fbs"></i>立即发表评价晒图，最多可获得50积分</span>
+    </div>
+</div>
+<div class="quedbox bg_white">
+    <div class="fukcuid mae">
+        <div class="maleri30">
+            <foreach name="order_goods.result" item="good">
+                <div class="shopprice p">
+                    <div class="img_or fl"><img src="{$good[original_img]}"></div>
+                    <div class="fon_or fl">
+                        <h2 class="similar-product-text"><a href="{:U('Mobile/Goods.goodsinfo',array('id'=>$good[goods_id]))}">{$good[goods_name]}</a></h2>
+                        <a class="compj" href="{:U('Mobile/User/add_comment',array('rec_id'=>$good[rec_id]))}">去评价</a>
+                    </div>
+                </div>
+            </foreach>
+        </div>
+    </div>
+</div>
+</body>
+</html>

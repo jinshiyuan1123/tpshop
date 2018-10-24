@@ -1,0 +1,81 @@
+ <!---晒单end-->
+<if condition="$count gt 0">
+<div class="comment_list" id="commentList">
+    <ul>
+      <foreach name="commentlist" item="v" key="k">
+      <li class="comment_item">
+        <div class="content_head" <if condition="($k+1) eq count($comment_list)"> style="border-bottom:0px solid #CCC;"<else/>style="border-bottom:1px solid #CCC;"</if>>
+	          <div class="info">
+	            <div class=" comment_star">
+	              <div class="one"><em>		<img src="{$v['head_pic']|default='__STATIC__/images/user68.jpg'}" style="width: 50px"><span>{$user['nickname']}</span></em></div>
+	              <div class="name">
+	              		{$v.username}
+	              		<em><img src="__STATIC__/images/stars{$v.service_rank}.png" alt="" /></em>
+	              </div>
+	               <div class="two">{$v.add_time|date='Y-m-d H:i',###}</div>
+	            </div>
+	          </div>
+	          <p> {$v['content']|htmlspecialchars_decode}</p>         
+			 <!---晒单-->   
+			<if condition="$v['img'] neq ''">
+			    <!--<div class="shaidan">       
+			      <h4>{$value.title}</h4>
+			      <p>{$value.content}</p>
+			   	</div>-->
+					<div class="sd_img">
+					<dl id="gallery">
+						<foreach name="v['img']" key="key" item="v2"> 
+						    <dd>
+						    	<a href="{$v2}"><img src="{$v2}" width="100px" heigth="100px"></a>
+						    </dd>
+						</foreach>
+					</dl>
+					</div>
+			</if>
+
+			<!--管理员回复-->  
+			<foreach name="replyList" item="val">
+                <if condition="$val['parent_id']  eq $v['comment_id']">
+			        <p style=" color:#F60; border-top:1px dashed #e5e5e5; padding-top:8px; margin-top:10px"><span>管理员{$val.username}回复：<br></span>{$val.content}</p>
+                </if>
+			</foreach>          
+		</div>
+   	  </li>
+		</foreach>
+	</ul>
+<else/>
+	<script>
+		ajax_sourch_submit_hide();
+	</script>
+<div class="comment_list" >
+	<div class="score">暂时还没有任何用户评论</div>
+</div>
+</if>
+</div>
+ <if condition="($count gt $current_count) AND (count($commentlist) eq $page_count)">
+	<div class="getmore" style="font-size:.24rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both">
+		<a href="javascript:void(0)" onClick="ajax_sourch_submit();">点击加载更多</a>
+	</div>
+	 <elseif condition="($count elt $current_count AND $count gt 0)" />
+	 <div class="score">已显示完所有评论</div>
+	 <else />
+</if>
+<script>
+	var  page = {$p};
+	function ajax_sourch_submit() {
+		page += 1;
+		$.ajax({
+			type: "GET",
+			url:"/index.php?m=Mobile&c=Goods&a=ajaxComment&goods_id={$goods_id}&commentType={$commentType}&p="+page,//+tab,
+			success: function (data) {
+				$('.getmore').hide();
+				if ($.trim(data) != ''){
+					$("#commentList").append(data);
+				}
+			}
+		});
+	}
+	function  ajax_sourch_submit_hide(){
+		$('.getmore').hide();
+	}
+</script>

@@ -1,0 +1,57 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>会员等级管理 - 编辑会员等级</h3>
+                <h5>网站系统会员等级管理</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="handleposition" action="{:U('Admin/User/levelHandle')}" method="post">
+        <input type="hidden" name="act" value="{$act}">
+        <input type="hidden" name="level_id" value="{$info.level_id}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="level_name"><em>*</em>等级名称</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="level_name" value="{$info.level_name}" id="level_name" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">设置会员等级名称</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="amount"><em>*</em>消费额度</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="amount" value="{$info.amount}" id="amount" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">设置会员等级所需要的消费额度,单位：元</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    等级描述
+                </dt>
+                <dd class="opt">
+                    <textarea  name="describe" class="tarea" rows="6">{$info.describe}</textarea>
+                    <span class="err"></span>
+                    <p class="notic">会员等级描述信息</p>
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" onclick="$('#handleposition').submit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

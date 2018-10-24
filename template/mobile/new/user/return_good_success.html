@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>申请售后服务--{$tpshop_config['shop_info_store_title']}</title>
+    <link rel="stylesheet" href="__STATIC__/new2/css/style.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/iconfont.css"/>
+</head>
+<body class="g4">
+
+    <div class="euresucess">
+        <img src="__STATIC__/images/sch.png"/>
+        <p>售后服务单申请成功</p>
+    </div>
+    <div class="applytime">
+        <p><span>申请时间：</span><span class="red">{:date('Y-m-d')}</span></p>
+        <p><span>申请类型：</span><span class="red"><if condition='data.type eq 0'>退货<else/>换货</if></span></p>
+    </div>
+    <div class="bgwappl">
+        <div class="applyover">
+            <a href="{:U('Mobile/User/return_goods_info',array('id'=>$data.return_id))}">进度查询</a>
+            <a href="{:U('Mobile/User/return_goods_list',array('new2'=>1))}">售后首页</a>
+        </div>
+    </div>
+</body>
+</html>

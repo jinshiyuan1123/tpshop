@@ -1,0 +1,131 @@
+<include file="public/layout" />
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+	<div class="fixed-bar">
+		<div class="item-title">
+			<div class="subject">
+				<h3>数据还原</h3>
+				<h5>网站系统数据还原</h5>
+			</div>
+		</div>
+	</div>
+	<!-- 操作说明 -->
+	<div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+		<div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+			<h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+			<span title="收起提示" id="explanationZoom" style="display: block;"></span>
+		</div>
+		<ul>
+			<li> 数据还原, 由总平台设置管理.</li>
+		</ul>
+	</div>
+	<div class="flexigrid">
+		<div class="mDiv">
+			<div class="ftitle">
+				<h3>sql文件列表</h3>
+				<h5>(备份文件数量：{$filenum}，占空间大小：{$total})</h5>
+			</div>
+			<div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+		</div>
+		<div class="hDiv">
+			<div class="hDivBox">
+				<table cellspacing="0" cellpadding="0">
+					<thead>
+					<tr>
+						<th class="sign" axis="col0">
+							<div style="width: 24px;"><i class="ico-check"></i></div>
+						</th>
+						<th align="left" abbr="article_title" axis="col3" class="">
+							<div style="text-align: left; width: 300px;" class="">文件名称</div>
+						</th>
+						<th align="center" abbr="ac_id" axis="col4" class="">
+							<div style="text-align: center; width: 50px;" class="">文件大小</div>
+						</th>
+						<th align="center" abbr="article_show" axis="col5" class="">
+							<div style="text-align: center; width: 120px;" class="">备份时间</div>
+						</th>
+						<th align="center" abbr="article_time" axis="col6" class="">
+							<div style="text-align: center; width: 50px;" class="">卷号</div>
+						</th>
+						<th align="center" axis="col1" class="handle">
+							<div style="text-align: center; width: 150px;">操作</div>
+						</th>
+						<th style="width:100%" axis="col7">
+							<div></div>
+						</th>
+					</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		<div class="tDiv">
+			<div class="tDiv2">
+				<div class="fbutton">
+					<form class="navbar-form form-inline" action="{:U('Tools/restoreUpload')}" name="change_System" method="post" enctype="multipart/form-data">
+						<input type="file" name="sqlfile">
+						<input type="submit" class="ncap-btn-big ncap-btn-green" value="提交">
+					</form>
+				</div>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="bDiv" style="height: auto;">
+			<div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+				<table>
+					<tbody>
+					<foreach name="vlist" item="vo" key="k" >
+						<tr data-id="{$vo.name}">
+							<td class="sign">
+								<div style="width: 24px;"><i class="ico-check"></i></div>
+							</td>
+							<td align="left" class="">
+								<div style="text-align: left; width: 300px;">{$vo.name}</div>
+							</td>
+							<td align="center" class="">
+								<div style="text-align: center; width: 50px;">{$vo.size|format_bytes}</div>
+							</td>
+							<td align="center" class="">
+								<div style="text-align: center; width: 120px;">{$vo.time|date="Y-m-d H:i:s",###}</div>
+							</td>
+							<td align="center" class="">
+								<div style="text-align: center; width: 50px;">{$vo.number}</div>
+							</td>
+
+							<td align="center" class="handle">
+								<div style="text-align: center; width: 170px; max-width:170px;">
+									<a href="{:U('Tools/restoreData',array('sqlfilepre'=>$vo['name']))}" class="btn blue"><i class="fa fa-repeat"></i>恢复</a>
+									<a href="{:U('Tools/downFile',array('type'=>'sql','file'=>$vo['name']))}" class="btn blue"><i class="fa fa-download"></i>下载</a>
+									<a class="btn red" href="{:U('Tools/delSqlFiles',array('sqlfilename'=>$vo['name']))}"><i class="fa fa-trash"></i>删除</a>
+								</div>
+							</td>
+							<td align="" class="" style="width: 100%;">
+								<div>&nbsp;</div>
+							</td>
+						</tr>
+					</foreach>
+					</tbody>
+				</table>
+			</div>
+			<div class="iDiv" style="display: none;"></div>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+		// 表格行点击选中切换
+		$('#flexigrid > table>tbody >tr').click(function(){
+			$(this).toggleClass('trSelected');
+		});
+
+		// 点击刷新数据
+		$('.fa-refresh').click(function(){
+			location.href = location.href;
+		});
+
+	});
+
+</script>
+</body>
+</html>

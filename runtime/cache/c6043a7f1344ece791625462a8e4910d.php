@@ -1,0 +1,3 @@
+<?php
+//000031104000a:1:{i:0;a:17:{s:10:"article_id";i:8;s:6:"cat_id";i:89;s:5:"title";s:12:"购物指南";s:7:"content";s:150:"<p><br/></p><p><br/></p><p><br/></p><p><img src="/Public/upload/article/2016/03-01/56d5563734e67.gif" title="CsnBPlT5B96AbSWVAAA9Kok_3T4165.gif"/></p>";s:6:"author";s:0:"";s:12:"author_email";s:0:"";s:8:"keywords";s:0:"";s:12:"article_type";i:2;s:7:"is_open";i:1;s:8:"add_time";i:0;s:8:"file_url";s:0:"";s:9:"open_type";i:0;s:4:"link";s:0:"";s:11:"description";s:0:"";s:5:"click";i:0;s:12:"publish_time";i:-28800;s:5:"thumb";s:0:"";}}
+?>
